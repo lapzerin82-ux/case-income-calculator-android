@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -40,7 +39,7 @@ jobs:
       - name: Generate branded Android icons
         run: |
           mkdir -p assets
-          curl --fail --location "https://case-income-calculator.lapzerin82.chatgpt.site/icon-512.png" --output assets/icon-only.png
+          base64 --decode icon-512.base64 > assets/icon-only.png
           npx capacitor-assets generate --android --iconBackgroundColor "#173b64"
 
       - name: Build APK
